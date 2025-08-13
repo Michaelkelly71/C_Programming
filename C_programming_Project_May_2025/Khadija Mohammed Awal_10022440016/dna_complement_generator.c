@@ -3,7 +3,7 @@
 #include <ctype.h>
 
 int main() {
-    char dna[256];
+    char dna[500];
     printf("Enter a DNA sequence: ");
     scanf("%s", dna); 
 
@@ -25,3 +25,4 @@ int main() {
     printf(" DNA complement: %s\n", dna);
     return 0;
 }
+
