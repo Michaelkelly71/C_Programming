@@ -27,3 +27,4 @@ int main(void) {
     printf("ciphertext: %s\n", ciphertext);
     return 0;
 }
+
