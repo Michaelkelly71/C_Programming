@@ -1,45 +1,44 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <string.h>
-#include <math.h>
+#include <ctype.h>
 
 int main(void) {
-    char text[1000];
-    int letters = 0, words = 0, sentences = 0;
+    char dna[1000], complement[1000];
     
-    printf("Text: ");
-    fgets(text, sizeof(text), stdin);
+    printf("Enter a DNA sequence: ");
+    fgets(dna, sizeof(dna), stdin);
     
-    for (int i = 0; i < strlen(text); i++) {
-        if (isalpha(text[i])) {
-            letters++;
+    // Remove newline character
+    dna[strcspn(dna, "\n")] = '\0';
+    
+    for (int i = 0; i < strlen(dna); i++) {
+        char base = toupper(dna[i]);
+        
+        switch (base) {
+            case 'A':
+                complement[i] = 'T';
+                break;
+            case 'T':
+                complement[i] = 'A';
+                break;
+            case 'C':
+                complement[i] = 'G';
+                break;
+            case 'G':
+                complement[i] = 'C';
+                break;
+            default:
+                complement[i] = dna[i]; // Keep invalid characters as-is
         }
         
-        if (text[i] == ' ' && i > 0 && text[i-1] != ' ') {
-            words++;
-        }
-        
-        if (text[i] == '.' || text[i] == '!' || text[i] == '?') {
-            sentences++;
+        // Preserve original case (bonus)
+        if (islower(dna[i])) {
+            complement[i] = tolower(complement[i]);
         }
     }
     
-    if (strlen(text) > 0 && text[strlen(text)-1] != ' ') {
-        words++;
-    }
+    complement[strlen(dna)] = '\0';
     
-    float L = (letters / (float)words) * 100;
-    float S = (sentences / (float)words) * 100;
-    
-    int index = round(0.0588 * L - 0.296 * S - 15.8);
-    
-    if (index < 1) {
-        printf("Before Grade 1\n");
-    } else if (index >= 16) {
-        printf("Grade 16+\n");
-    } else {
-        printf("Grade %d\n", index);
-    }
-    
+    printf("Complement: %s\n", complement);
     return 0;
 }
