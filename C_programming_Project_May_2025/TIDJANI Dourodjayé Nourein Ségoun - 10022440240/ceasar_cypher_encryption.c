@@ -13,7 +13,7 @@ int main(){
     int lenght=len(plaintext);
     for(int i=0; i<plaintext; i++){
         char ch=plaintext[i];
-        if (isupper(ch)){
+        if(isupper(ch)){
             printf("%c\n", ((ch - 'A' + key) % 26) + 'A');
         }else if(islower(ch)){
             printf("%c\n", ((ch - 'a' + key) % 26) + 'a');
@@ -22,4 +22,5 @@ int main(){
         }
     }
     return 0;
+
 }
