@@ -5,22 +5,22 @@
 int main() {
     char dna[50];
     printf("Enter your DNA sequence: ");
-    fgets(dna, 50, stdin);
+    fgets(dna, sizeof(dna), stdin);
     
     
     dna[strcspn(dna, "\n")] = '\0';
     
     for (int i = 0; i < strlen(dna); i++) {
-        char user_input = dna[i];
-        if (isupper(user_input)) {
-            switch (user_input) {
+        char new_dna = dna[i];
+        if (isupper(new_dna)) {
+            switch (new_dna) {
                 case 'A': dna[i] = 'T'; break;
                 case 'T': dna[i] = 'A'; break;
                 case 'C': dna[i] = 'G'; break;
                 case 'G': dna[i] = 'C'; break;
             }
-        } else if (islower(user_input)) {
-            switch (user_input) {
+        } else if (islower(new_dna)) {
+            switch (new_dna) {
                 case 'a': dna[i] = 't'; break;
                 case 't': dna[i] = 'a'; break;
                 case 'c': dna[i] = 'g'; break;
@@ -31,4 +31,5 @@ int main() {
     
     printf("Complement: %s\n", dna);
     return 0;
+
 }
