@@ -4,12 +4,11 @@
 
 int main(void) {
     char plaintext[1000], ciphertext[1000];
-    int key = 3; // Example key - could be made user input
+    int key = 3; 
     
     printf("plaintext: ");
     fgets(plaintext, sizeof(plaintext), stdin);
     
-    // Remove newline character
     plaintext[strcspn(plaintext, "\n")] = '\0';
     
     for (int i = 0; i < strlen(plaintext); i++) {
@@ -18,7 +17,7 @@ int main(void) {
         } else if (islower(plaintext[i])) {
             ciphertext[i] = ((plaintext[i] - 'a' + key) % 26) + 'a';
         } else {
-            ciphertext[i] = plaintext[i]; // Non-alphabetic characters remain unchanged
+            ciphertext[i] = plaintext[i]; 
         }
     }
     
@@ -27,4 +26,5 @@ int main(void) {
     printf("ciphertext: %s\n", ciphertext);
     return 0;
 }
+
 
