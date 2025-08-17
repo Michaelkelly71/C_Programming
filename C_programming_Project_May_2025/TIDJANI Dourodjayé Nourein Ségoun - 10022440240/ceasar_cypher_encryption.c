@@ -10,17 +10,17 @@ int main(){
     printf("Enter the plaintext: ");
     fgets(plaintext,sizeof(plaintext),stdin);
     printf("The equivalent cyphertext is: ");
-    int lenght=len(plaintext);
-    for(int i=0; i<plaintext; i++){
+    int length=strlen(plaintext);
+    for(int i=0; i<length; i++){
         char ch=plaintext[i];
         if(isupper(ch)){
-            printf("%c\n", ((ch - 'A' + key) % 26) + 'A');
+            printf("%c", ((ch - 'A' + key) % 26) + 'A');
         }else if(islower(ch)){
-            printf("%c\n", ((ch - 'a' + key) % 26) + 'a');
+            printf("%c", ((ch - 'a' + key) % 26) + 'a');
         }else{
-            printf("%c\n", ch);
+            printf("%c", ch);
         }
+        printf("\n");
     }
     return 0;
-
 }
