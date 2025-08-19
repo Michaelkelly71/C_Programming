@@ -15,7 +15,7 @@ int main(void) {
             case 't': dna[i] = 'a'; break;
             case 'c': dna[i] = 'g'; break;
             case 'g': dna[i] = 'c'; break;
-            default: /* ignore other chars */ break;
+            default: break;
         }
     }
     printf("Complement: %s\n", dna);
