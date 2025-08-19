@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+
+void caesar_encrypt(const char* plaintext, char* ciphertext, int key) {
+    for (int i = 0; plaintext[i] != '\0'; i++) {
+        char ch = plaintext[i];
+
+        
+        if (ch >= 'A' && ch <= 'Z') {
+            ciphertext[i] = ((ch - 'A' + key) % 26) + 'A';
+        }
+        
+        else if (ch >= 'a' && ch <= 'z') {
+            ciphertext[i] = ((ch - 'a' + key) % 26) + 'a';
+        }
+        
+        else {
+            ciphertext[i] = ch;
+        }
+    }
+    ciphertext[strlen(plaintext)] = '\0'; 
+}
+
+int main() {
+    char plaintext[1000];
+    int key;
+
+    
+    printf("plaintext: ");
+    fgets(plaintext, sizeof(plaintext), stdin);
+
+    
+    size_t len = strlen(plaintext);
+    if (len > 0 && plaintext[len - 1] == '\n') {
+        plaintext[len - 1] = '\0';
+    }
+
+    
+    printf("key: ");
+    scanf("%d", &key);
+
+    
+    key = key % 26;
+
+    
+    char ciphertext[1000];
+
+    
+    caesar_encrypt(plaintext, ciphertext, key);
+
+    
+    printf("ciphertext: %s\n", ciphertext);
+
+    return 0;
+}
