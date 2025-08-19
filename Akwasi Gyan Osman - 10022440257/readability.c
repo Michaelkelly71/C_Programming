@@ -15,7 +15,7 @@ int main(void) {
         if (text[i] == '.' || text[i] == '!' || text[i] == '?') sentences++;
         if (isspace((unsigned char)text[i])) words++;
     }
-    words++; // last word
+    words++; 
 
     float L = (letters / (float)words) * 100.0f;
     float S = (sentences / (float)words) * 100.0f;
