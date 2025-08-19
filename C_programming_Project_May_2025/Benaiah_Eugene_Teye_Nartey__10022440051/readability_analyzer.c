@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_TEXT_LENGTH 1000
+
+int count_letters(char text[]);
+int count_words(char text[]);
+int count_sentences(char text[]);
+int round_nearest(float num);
+
+int main()
+{
+    char text[MAX_TEXT_LENGTH];
+
+    
+    printf("Text: ");
+    fgets(text, sizeof(text), stdin);
+    text[strcspn(text, "\n")] = '\0';  
+
+    int letters = count_letters(text);
+    int words = count_words(text);
+    int sentences = count_sentences(text);
+
+    float L = (float) letters / words * 100;
+    float S = (float) sentences / words * 100;
+
+    float index = (0.0588 * L) - (0.296 * S) - 15.8;
+    int grade = round_nearest(index);
+
+    if (grade < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    else if (grade >= 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %d\n", grade);
+    }
+
+    return 0;
+}
+
+
+int is_letter(char c)
+{
+    return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+}
+
+int count_letters(char text[])
+{
+    int count = 0;
+    for (int i = 0; text[i] != '\0'; i++)
+    {
+        if (is_letter(text[i]))
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+int count_words(char text[])
+{
+    int count = 0;
+    int in_word = 0;
+
+    for (int i = 0; text[i] != '\0'; i++)
+    {
+        if (text[i] == ' ' || text[i] == '\t')
+        {
+            in_word = 0;
+        }
+        else if (in_word == 0)
+        {
+            in_word = 1;
+            count++;
+        }
+    }
+
+    return count;
+}
+
+
+int count_sentences(char text[])
+{
+    int count = 0;
+    for (int i = 0; text[i] != '\0'; i++)
+    {
+        if (text[i] == '.' || text[i] == '!' || text[i] == '?')
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+int round_nearest(float num)
+{
+    int whole = (int) num;
+    float fraction = num - whole;
+
+    if (fraction >= 0.5)
+        return whole + 1;
+    else if (fraction <= -0.5)
+        return whole - 1;
+    else
+        return whole;
+}
