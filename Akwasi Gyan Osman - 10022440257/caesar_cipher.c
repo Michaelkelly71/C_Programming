@@ -7,8 +7,8 @@ int main(void) {
 
     printf("Enter key (number of shifts): ");
     if (scanf("%d", &key) != 1) return 0;
-    key %= 26; // normalize
-    getchar(); // consume newline
+    key %= 26; 
+    getchar(); 
 
     printf("plaintext: ");
     if (!fgets(text, sizeof(text), stdin)) return 0;
