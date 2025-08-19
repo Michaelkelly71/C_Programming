@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+static char complement_base(char b) {
+    switch (b) {
+        case 'A': return 'T';
+        case 'T': return 'A';
+        case 'C': return 'G';
+        case 'G': return 'C';
+        case 'a': return 't';
+        case 't': return 'a';
+        case 'c': return 'g';
+        case 'g': return 'c';
+        default:  return b; 
+    }
+}
+
+int main(void) {
+    char dna[5000];
+
+    printf("Enter a DNA sequence: ");
+    if (!fgets(dna, sizeof(dna), stdin)) {
+        return 1;
+    }
+
+    for (int i = 0; dna[i] != '\0'; i++) {
+        dna[i] = complement_base(dna[i]);
+    }
+
+    printf("Complement: %s", dna);
+    return 0;
+}
